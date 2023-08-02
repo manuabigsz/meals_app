@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:meals/utils/app_routes.dart';
+import '../utils/app_routes.dart';
 
-class CustomDrawer extends StatelessWidget {
-  Widget _createItem(IconData icon, String label, void Function() onTaps) {
+class MainDrawer extends StatelessWidget {
+  const MainDrawer({Key? key}) : super(key: key);
+
+  Widget _createItem(IconData icon, String label, Function() onTap) {
     return ListTile(
-      leading: Icon(icon, size: 26),
+      leading: Icon(
+        icon,
+        size: 26,
+      ),
       title: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'RobotoCondensed',
-          fontSize: 25,
+          fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: onTaps,
+      onTap: onTap,
     );
   }
 
@@ -25,21 +30,19 @@ class CustomDrawer extends StatelessWidget {
           Container(
             height: 120,
             width: double.infinity,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             color: Theme.of(context).colorScheme.secondary,
             alignment: Alignment.bottomRight,
             child: Text(
-              'vamos cozinhar',
+              'Vamos Cozinhar?',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 30,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           _createItem(
             Icons.restaurant,
             'Refeições',
@@ -49,7 +52,7 @@ class CustomDrawer extends StatelessWidget {
             Icons.settings,
             'Configurações',
             () =>
-                Navigator.of(context).pushReplacementNamed(AppRoutes.SETTINGS),
+                Navigator.of(context).pushReplacementNamed(AppRoutes.settings),
           ),
         ],
       ),
